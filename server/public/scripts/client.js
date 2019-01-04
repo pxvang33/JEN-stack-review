@@ -1,19 +1,45 @@
 console.log('js');
 
 $(document).ready(readyNow);
+let username = '';
 
 function readyNow(){
     console.log('jq');
     $('#refreshButton').on('click', refreshPage);
     $('#sendButton').on('click', newMessage);
-    
+    $('#loginButton').on('click', loginNow);
+    $('#logoutButton').on('click', logoutNow);
+    $('#newMessage').hide();
+    $('#output').hide();
+
 }
+function loginNow(){
+    username = $('#nameIn').val();
+    console.log('logging in:', username);
+    $('#welcome').empty();
+    $('#welcome').append(`Hello, ${username}`);
+    // toggle input elements
+    $('#login').hide();
+    $('#newMessage').show();
+    $('#output').show();
+    $('#nameIn').val('');
+
+    refreshPage()
+} //end loginNow
+
+function logoutNow(){
+    username = '';
+    $('#login').show();
+    $('#newMessage').hide();
+    $('#output').hide();
+
+} // end logoutNow
 function newMessage(){
     console.log('in newMessage');
     // get user input
     // assemble into an object
     let objectToSend = {
-        from: $('#nameIn').val(),
+        from: username,
         message: $('#messageIn').val()
 
 
@@ -27,6 +53,8 @@ function newMessage(){
         data: objectToSend
     }).then(function(response){
         console.log('back from POST with:', response);
+        $('#messageIn').val('');
+        refreshPage();
 
     })// end ajax
 } // end newMessage

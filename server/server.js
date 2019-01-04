@@ -22,5 +22,6 @@ app.get('/messages', (req,res) =>{
 app.post('/messages', (req, res)=>{
     console.log('in /messages POST', req.body );
     messages.push(req.body);
+    // must respond to trigger "then" on client side
     res.sendStatus(201);
 }) // end /messages POST

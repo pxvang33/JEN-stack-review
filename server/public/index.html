@@ -12,14 +12,23 @@
     <h1>JEN Stack Review</h1>
     
     <div id ="input">
-        <h2>New Message</h2>
-        <input type="text" id="messageIn" placeholder="message body">
-        <input type="text" id="nameIn" placeholder="name body">
-        <button id="sendButton">Send Message</button>
+        <div id="login">
+                <h2>Login</h2>
+                <input type="text" id="nameIn" placeholder="name body">
+                <button id="loginButton">Log In</button>
+        </div>
+
+        <div id="newMessage">
+            <h2>New Message</h2>
+            <p id="welcome"></p>
+            <input type="text" id="messageIn" placeholder="message body">
+            <button id="sendButton">Send Message</button>
+        </div>
     </div>
 
     <div id ="output">
         <button id="refreshButton">Refresh</button>
+        <button id="logoutButton">log out</button>
         <ul id="messagesOut">
 
         </ul>
