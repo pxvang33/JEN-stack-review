@@ -14,14 +14,21 @@ function newMessage(){
     // assemble into an object
     let objectToSend = {
         from: $('#nameIn').val(),
-        body: $('#messageIn').val()
+        message: $('#messageIn').val()
 
 
     } // end objectToSend
     console.log('sending:', objectToSend);
     
     // send to server via POST
-    
+    $.ajax({
+        method: 'POST',
+        url: '/messages',
+        data: objectToSend
+    }).then(function(response){
+        console.log('back from POST with:', response);
+
+    })// end ajax
 } // end newMessage
 function refreshPage(){
     console.log('in refresh');
@@ -38,7 +45,7 @@ function refreshPage(){
         for(messages of response){
          // display on DOM
             $('#messagesOut').append(
-                                    `<li>"${messages.body}"
+                                    `<li>"${messages.message}"
                                     <em>from ${messages.from}</em>
                                     </li>`);
         } //end for loop 
